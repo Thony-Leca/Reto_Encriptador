@@ -7,7 +7,24 @@ const mensajecont = document.getElementById('mensaje');
 const copiarbtn= document.getElementById('copiar');
 const copiadomensaje= document.getElementById('copiado')
 
+function validartxt(){
+    const mayusculas= /[A-Z]/;
+    const tildes= /[áéíóúÁÉÍÓÚÜ]/;
+        // Verificar si se encuentran acentos o letras mayúsculas
+        if (tildes.test(entrada.value)|| mayusculas.test(entrada.value)) {
+            // Mostrar mensaje de advertencia usando un alert
+            alert("Evita el uso de acentos o letras mayúsculas.");
+            return false
+        }else{
+            return true
+        }
+}
+
 function btnencriptar() {
+    // Validar el texto antes de encriptar
+    if (!validartxt()) {
+        return; // Salir de la función si la validación no pasa
+    }
     const txtfinal = encriptar(entrada.value);
     resultado.value = txtfinal;
     if(entrada.value){
@@ -38,6 +55,10 @@ function encriptar(txtencriptado) {
 
 
 function btndesencriptar() {
+    // Validar el texto antes de encriptar
+    if (!validartxt()) {
+        return; // Salir de la función si la validación no pasa
+    }
     const txtfinal = desencriptar(entrada.value);
     resultado.value = txtfinal;
     if(entrada.value){
